@@ -7,13 +7,13 @@ extension AppIconsClient: DependencyKey {
         alternateIconName: {
             UIApplication.shared.alternateIconName
         },
-        selectIcon: { icon in
-            guard UIApplication.shared.alternateIconName != icon.name else { return }
+        selectIcon: { name in
+            guard UIApplication.shared.alternateIconName != name else { return }
             do {
-                try await UIApplication.shared.setAlternateIconName(icon.displayName)
+                try await UIApplication.shared.setAlternateIconName(name)
             } catch {
                 // TODO: Log error
-                print("Updating icon to \(String(describing: icon.name)) failed: \(error.localizedDescription)")
+                print("Updating icon to \(String(describing: name)) failed: \(error.localizedDescription)")
             }
         },
         supportsAlternateIcons: {
